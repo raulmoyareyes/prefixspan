@@ -27,7 +27,7 @@ public class Transaction {
      */
     void clear() {
         this.first = 0;
-        this.second.clear();
+        this.second = new ArrayList();
     }
 
 }
