@@ -2,7 +2,7 @@
 package prefixspan.utils;
 
 /**
- *
+ * Class of a pair of params (A and B)
  * @author Raúl Moya Reyes <raulmoya.es>
  * @author Agustín Ruiz Linares <agustruiz.es>
  * 

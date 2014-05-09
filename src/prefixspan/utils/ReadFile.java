@@ -7,14 +7,17 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- *
+ * Class for reading files
  * @author Raúl Moya Reyes <raulmoya.es>
  * @author Agustín Ruiz Linares <agustruiz.es>
  */
 public class ReadFile {
 
+    ///Files
     private File file = null;
+    ///File readers
     private FileReader fr = null;
+    ///Buffered Reader
     private BufferedReader br = null;
 
     /**

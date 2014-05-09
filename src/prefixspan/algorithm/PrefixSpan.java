@@ -8,36 +8,47 @@ import java.util.Objects;
 import prefixspan.utils.ReadFile;
 
 /**
- *
+ * PrefixSpan algorithm
  * @author Raúl Moya Reyes <raulmoya.es>
  * @author Agustín Ruiz Linares <agustruiz.es>
  */
 public class PrefixSpan {
 
-    /**
+    /*
      * Extraoficial Lanzar expeccion si se salen min_sup y max_pat
      */
+    ///Minimun support
     private final int minSup;
+    ///Max pattern size
     private final int maxPat;
+    ///Patterns
     private final List<Integer> pattern;
 
+    /**
+     * Class constructor
+     * @param minSup Minimun support
+     * @param maxPat Max pattern size
+     */
     public PrefixSpan(int minSup, int maxPat) {
         this.minSup = minSup;
         this.maxPat = maxPat;
         this.pattern = new ArrayList();
     }
 
-    public void read(String fileName, PairData pairData) {// Comprobado por Raúl, parece que funciona bien
+    /**
+     * Read file method
+     * @param fileName Path to file
+     * @param pairData Pair data
+     */
+    public void read(String fileName, PairData pairData) {
         String line;
         int id = 0;
 
         ReadFile readFile = new ReadFile(fileName);
-//        Transaction transaction = new Transaction();
 
         line = readFile.readLine();
         while (line != null) {
-            Transaction transaction = new Transaction(); //transaction.clear(); //vacía la transaccion para crear una nueva
-//            List<Integer> itemSets = transaction.second;
+            Transaction transaction = new Transaction(); //transaction.clear();
 
             for (String item : line.split(" ")) {
                 transaction.second.add(Integer.parseInt(item));//itemSets.add(Integer.parseInt(item));
@@ -54,6 +65,10 @@ public class PrefixSpan {
 
     }
 
+    /**
+     * Print frequent sequential patterns
+     * @param projected Pair data
+     */
     public void print_pattern(PairData projected) {
 
         for (Integer it : pattern) {
@@ -67,18 +82,26 @@ public class PrefixSpan {
         System.out.println(") : " + projected.dataBase.size());
     }
 
+    /**
+     * Run prefixspan algorithm
+     * @param file Path to file
+     */
     public void run(String file) {
         PairData pairData = new PairData(); // Data Base
         this.read(file, pairData);
         project(pairData);
     }
 
+    /**
+     * Project database
+     * @param projected PairData to project
+     */
     public void project(PairData projected) {
         if (projected.dataBase.size() < minSup) {
             return;
         }
 
-        print_pattern(projected);
+        this.print_pattern(projected);
 
         if (maxPat != 0 && pattern.size() == maxPat) {
             return;
@@ -108,10 +131,10 @@ public class PrefixSpan {
                 Transaction transaction = dataBase.get(i);
                 List<Integer> itemSet = transaction.second;
                 for (int iter = projected.indeces.get(i); iter < itemSet.size(); iter++) {
-                    if (Objects.equals(itemSet.get(iter), it_1.getKey())) { //it_1.first creo que está mal sería value
+                    if (Objects.equals(itemSet.get(iter), it_1.getKey())) { 
                         newDataBase.add(transaction);
                         newIndeces.add(iter + 1);
-                        break; // ??? WTF
+                        break;
                     }
                 }
             }

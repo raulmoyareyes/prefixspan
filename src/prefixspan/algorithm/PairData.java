@@ -10,7 +10,9 @@ import java.util.List;
  * @author Agustín Ruiz Linares <agustruiz.es>
  */
 public class PairData {
+    ///Database
     public List<Transaction> dataBase;
+    ///Indeces
     public List<Integer> indeces;
 
     /**
