@@ -14,7 +14,7 @@ public class Transaction {
     /// Possition in database
     public int first;
     ///List of items in transaction
-    public List<Integer> second;
+    public List<String> second;
 
     /**
      * Class constructor

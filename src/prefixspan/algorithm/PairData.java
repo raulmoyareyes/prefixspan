@@ -15,12 +15,17 @@ public class PairData {
     ///Indeces
     public List<Integer> indeces;
 
+
+
     /**
      * Class constructor
      */
     public PairData() {
         this.dataBase = new ArrayList();
         this.indeces = new ArrayList();
+        //this.record= new List<Integer>[100];
+
+
     }
     
     /**
